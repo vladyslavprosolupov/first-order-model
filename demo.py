@@ -61,7 +61,7 @@ def make_animation(source_image, driving_video, generator, kp_detector, relative
             source = source.cuda()
         
         kp_driving_initial = None
-        for driving in driving_video:
+        for driving in tqdm(driving_video):
             driving_frame = torch.tensor(driving[np.newaxis].astype(np.float32)).permute(0, 3, 1, 2)
             kp_source = kp_detector(source)
             kp_driving_initial = kp_driving_initial or kp_detector(driving_frame)
